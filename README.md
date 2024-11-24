@@ -41,6 +41,23 @@ A **Express.js** application built with **TypeScript** to manage a book store, l
 
 ---
 
+## **API Endpoints**
+
+## **Books**
+
+- **Create a Book**: POST /api/products
+- **Get All Books**: GET /api/products?searchTerm={term}
+- **Get Book by ID**: GET /api/products/:productId
+- **Update Book**: PUT /api/products/:productId
+- **Delete Book**: DELETE /api/products/:productId
+
+## **Orders**
+
+- **Create Order**: POST /api/orders
+- **Get Total Revenue**: GET /api/orders/revenue
+
+---
+
 ## **Setup Instructions**
 
 ### **Prerequisites**
@@ -56,6 +73,23 @@ Make sure you have the following installed on your system:
 1. **Clone the Repository**
 
    ```bash
-   git clone
+   git clone https://github.com/MuhtasimRahmanS/bookShopServer.git
+   ```
 
+1. **Install Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+   or
+
+   ```bash
+   yarn install
+   ```
+
+1. **Run the Application**
+
+   ```bash
+   npm run dev
    ```
