@@ -42,19 +42,22 @@ export const getAllProducts = async (req: Request, res: Response) => {
 };
 
 // Get a specific product by ID
-export const getProduct = async (req: Request, res: Response)  => {
+export const getProduct = async (req: Request, res: Response) => {
   try {
     const product = await getProductService(req.params.productId);
-    if (!product)
-      return res.status(404).json({
+
+    if (!product) {
+      res.status(404).json({
         message: "Book not found",
         success: false,
       });
-    res.json({
-      message: "Book retrieved successfully",
-      status: true,
-      data: product,
-    });
+    } else {
+      res.json({
+        message: "Book retrieved successfully",
+        status: true,
+        data: product,
+      });
+    }
   } catch (error) {
     res.status(400).json({
       message: "Error retrieving book",
@@ -67,17 +70,23 @@ export const getProduct = async (req: Request, res: Response)  => {
 // Update a product
 export const updateProduct = async (req: Request, res: Response) => {
   try {
-    const product = await updateProductService(req.params.productId, req.body);
-    if (!product)
-      return res.status(404).json({
+    const productId = req.params.productId;
+    const productData = req.body;
+
+    const product = await updateProductService(productId, productData);
+
+    if (!product) {
+      res.status(404).json({
         message: "Book not found",
         success: false,
       });
-    res.json({
-      message: "Book updated successfully",
-      status: true,
-      data: product,
-    });
+    } else {
+      res.json({
+        message: "Book updated successfully",
+        status: true,
+        data: product,
+      });
+    }
   } catch (error) {
     res.status(400).json({
       message: "Error updating book",
@@ -86,6 +95,7 @@ export const updateProduct = async (req: Request, res: Response) => {
     });
   }
 };
+
 
 // Delete a product
 export const deleteProduct = async (req: Request, res: Response) => {
